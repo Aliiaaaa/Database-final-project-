@@ -51,7 +51,7 @@ The project demonstrates the use of SQL schema design, relational modeling, cons
 
 ![ERD2](./ERD2.png)
 
-> Place both images (`ERD1.png` and `ERD2.png`) inside the root folder of the GitHub repository so they display correctly in the README.
+
 
 ---
 
