@@ -383,19 +383,6 @@ Shows how many units of each product were sold.
 
 ---
 
-# Screenshots
-
-## Database Tables
-
-<img width="1200" height="700" alt="Database Tables" src="https://github.com/user-attachments/assets/example-tables" />
-
----
-
-## Query Results
-
-<img width="1200" height="700" alt="Query Results" src="https://github.com/user-attachments/assets/example-query-results" />
-
----
 
 # Future Improvements
 
@@ -407,6 +394,8 @@ Shows how many units of each product were sold.
 * Add advanced analytics queries
 
 ---
+Project Demo Video on YouTube
+
 
 # Conclusion
 
