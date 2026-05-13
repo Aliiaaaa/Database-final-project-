@@ -393,8 +393,9 @@ Shows how many units of each product were sold.
 * Add admin dashboard
 * Add advanced analytics queries
 
----
-Project Demo Video on YouTube
+## Project Demo Video
+
+[Watch the Demo Video](https://youtu.be/g5Mx_YzWpmk)
 
 
 # Conclusion
