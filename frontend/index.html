@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#0f172a] text-white min-h-screen">
+
+<div id="loginPage" class="min-h-screen flex items-center justify-center">
+
+  <div class="bg-slate-800 p-10 rounded-3xl w-[400px] border border-slate-700">
+
+    <h1 class="text-4xl font-bold text-indigo-400 mb-8 text-center">
+      Admin Login
+    </h1>
+
+    <div class="flex flex-col gap-4">
+
+      <input
+        type="text"
+        id="username"
+        placeholder="Username"
+        class="bg-slate-900 p-4 rounded-xl outline-none"
+      />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Password"
+        class="bg-slate-900 p-4 rounded-xl outline-none"
+      />
+
+      <button
+        onclick="login()"
+        class="bg-indigo-600 hover:bg-indigo-700 transition p-4 rounded-xl font-bold"
+      >
+        Login
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="dashboard" class="hidden">
+
+  <div class="flex">
+
+    <div class="w-64 min-h-screen bg-[#1e1b4b] p-6 border-r border-slate-800">
+
+      <h1 class="text-3xl font-bold text-indigo-400 mb-10">
+        Store Admin
+      </h1>
+
+      <div class="flex flex-col gap-4 text-lg">
+
+        <button onclick="showSection('dashboardSection')" class="text-left hover:text-indigo-400">
+          Dashboard
+        </button>
+
+        <button onclick="showSection('productsSection')" class="text-left hover:text-indigo-400">
+          Products
+        </button>
+
+        <button onclick="showSection('ordersSection')" class="text-left hover:text-indigo-400">
+          Orders
+        </button>
+
+        <button onclick="showSection('usersSection')" class="text-left hover:text-indigo-400">
+          Customers
+        </button>
+
+        <button onclick="showSection('paymentsSection')" class="text-left hover:text-indigo-400">
+          Payments
+        </button>
+
+        <button onclick="showSection('deliveriesSection')" class="text-left hover:text-indigo-400">
+          Deliveries
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="flex-1 p-10">
+
+      <div id="dashboardSection">
+
+        <h1 class="text-4xl font-bold mb-10">
+          Dashboard Statistics
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+          <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+            <h2 class="text-slate-400 mb-2">Products</h2>
+            <p id="totalProducts" class="text-4xl font-bold text-indigo-400">0</p>
+          </div>
+
+          <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+            <h2 class="text-slate-400 mb-2">Orders</h2>
+            <p id="totalOrders" class="text-4xl font-bold text-emerald-400">0</p>
+          </div>
+
+          <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+            <h2 class="text-slate-400 mb-2">Users</h2>
+            <p id="totalUsers" class="text-4xl font-bold text-pink-400">0</p>
+          </div>
+
+          <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+            <h2 class="text-slate-400 mb-2">Revenue</h2>
+            <p id="totalRevenue" class="text-4xl font-bold text-yellow-400">0</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="productsSection" class="hidden mt-10">
+
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-4xl font-bold">Products</h1>
+        </div>
+
+        <div class="bg-slate-800 p-6 rounded-2xl mb-8 border border-slate-700">
+
+          <div class="grid md:grid-cols-4 gap-4">
+
+            <input
+              type="text"
+              id="productName"
+              placeholder="Product name"
+              class="bg-slate-900 p-3 rounded-xl outline-none"
+            />
+
+            <input
+              type="number"
+              id="productPrice"
+              placeholder="Price"
+              class="bg-slate-900 p-3 rounded-xl outline-none"
+            />
+
+            <input
+              type="number"
+              id="productStock"
+              placeholder="Stock"
+              class="bg-slate-900 p-3 rounded-xl outline-none"
+            />
+
+            <button
+              onclick="addProduct()"
+              class="bg-indigo-600 hover:bg-indigo-700 rounded-xl font-bold p-3"
+            >
+              Add Product
+            </button>
+
+          </div>
+
+        </div>
+
+        <div id="products-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+
+      </div>
+
+      <div id="ordersSection" class="hidden mt-10">
+        <h1 class="text-4xl font-bold mb-8">Orders</h1>
+        <div id="orders-container" class="grid gap-4"></div>
+      </div>
+
+      <div id="usersSection" class="hidden mt-10">
+        <h1 class="text-4xl font-bold mb-8">Customers</h1>
+        <div id="users-container" class="grid gap-4"></div>
+      </div>
+
+      <div id="paymentsSection" class="hidden mt-10">
+        <h1 class="text-4xl font-bold mb-8">Payments</h1>
+        <div id="payments-container" class="grid gap-4"></div>
+      </div>
+
+      <div id="deliveriesSection" class="hidden mt-10">
+        <h1 class="text-4xl font-bold mb-8">Deliveries</h1>
+        <div id="deliveries-container" class="grid gap-4"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const API_URL = 'http://localhost:5000/api';
+
+async function login() {
+
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  try {
+
+    const response = await fetch(`${API_URL}/login`, {
+
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        username,
+        password
+      })
+    });
+
+    if (response.ok) {
+
+      document.getElementById('loginPage').classList.add('hidden');
+
+      document.getElementById('dashboard').classList.remove('hidden');
+
+      loadStats();
+      loadProducts();
+      loadOrders();
+      loadUsers();
+      loadPayments();
+      loadDeliveries();
+
+    } else {
+
+      alert('Invalid credentials');
+    }
+
+  } catch (error) {
+
+    console.error(error);
+    alert('Server connection failed');
+  }
+}
+
+function showSection(sectionId) {
+
+  const sections = [
+    'dashboardSection',
+    'productsSection',
+    'ordersSection',
+    'usersSection',
+    'paymentsSection',
+    'deliveriesSection'
+  ];
+
+  sections.forEach(section => {
+    document.getElementById(section).classList.add('hidden');
+  });
+
+  document.getElementById(sectionId).classList.remove('hidden');
+}
+
+async function loadStats() {
+
+  const response = await fetch(`${API_URL}/stats`);
+  const data = await response.json();
+
+  document.getElementById('totalProducts').innerText = data.totalProducts;
+  document.getElementById('totalOrders').innerText = data.totalOrders;
+  document.getElementById('totalUsers').innerText = data.totalUsers;
+  document.getElementById('totalRevenue').innerText = `${data.totalRevenue} $`;
+}
+
+async function loadProducts() {
+
+  const response = await fetch(`${API_URL}/products`);
+
+  const products = await response.json();
+
+  const container = document.getElementById('products-container');
+
+  container.innerHTML = '';
+
+  products.forEach(product => {
+
+    container.innerHTML += `
+
+      <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between">
+
+        <div>
+
+          <h3 class="text-xl font-bold text-indigo-300 mb-2">
+            ${product.product_name}
+          </h3>
+
+          <p class="text-slate-400">
+            Category: ${product.category_name || 'None'}
+          </p>
+
+          <p class="text-2xl font-bold text-yellow-400 mt-4">
+            ${product.price} $
+          </p>
+
+          <p class="text-sm text-slate-500">
+            Stock: ${product.stock}
+          </p>
+
+        </div>
+
+        <button
+          onclick="deleteProduct(${product.product_id})"
+          class="mt-4 bg-red-600 hover:bg-red-700 rounded-xl p-2 font-bold transition"
+        >
+          Delete
+        </button>
+
+      </div>
+    `;
+  });
+}
+
+async function addProduct() {
+
+  const name = document.getElementById('productName').value;
+
+  const price = document.getElementById('productPrice').value;
+
+  const stock = document.getElementById('productStock').value;
+
+  if(!name || !price || !stock) {
+
+    alert('Fill all fields');
+    return;
+  }
+
+  await fetch(`${API_URL}/products`, {
+
+    method: 'POST',
+
+    headers: {
+      'Content-Type': 'application/json'
+    },
+
+    body: JSON.stringify({
+      product_name: name,
+      price,
+      stock
+    })
+  });
+
+  document.getElementById('productName').value = '';
+  document.getElementById('productPrice').value = '';
+  document.getElementById('productStock').value = '';
+
+  loadProducts();
+  loadStats();
+}
+
+async function deleteProduct(id) {
+
+  await fetch(`${API_URL}/products/${id}`, {
+    method: 'DELETE'
+  });
+
+  loadProducts();
+  loadStats();
+}
+
+async function loadOrders() {
+
+  const response = await fetch(`${API_URL}/orders`);
+
+  const orders = await response.json();
+
+  const container = document.getElementById('orders-container');
+
+  container.innerHTML = '';
+
+  orders.forEach(order => {
+
+    container.innerHTML += `
+
+      <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+
+        <div>
+
+          <p class="font-bold text-indigo-400">
+            Order #${order.order_id}
+          </p>
+
+          <p class="text-slate-300">
+            ${order.name}
+          </p>
+
+        </div>
+
+        <span class="px-4 py-1 rounded-full text-sm font-bold bg-emerald-900 text-emerald-300">
+          ${order.status}
+        </span>
+
+      </div>
+    `;
+  });
+}
+
+async function loadUsers() {
+
+  const response = await fetch(`${API_URL}/users`);
+
+  const users = await response.json();
+
+  const container = document.getElementById('users-container');
+
+  container.innerHTML = '';
+
+  users.forEach(user => {
+
+    container.innerHTML += `
+
+      <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+
+        <div>
+
+          <p class="font-bold text-pink-400">
+            ${user.name}
+          </p>
+
+          <p class="text-slate-400 text-sm">
+            ${user.email}
+          </p>
+
+        </div>
+
+        <span class="text-slate-500 text-xs">
+          User ID: ${user.user_id}
+        </span>
+
+      </div>
+    `;
+  });
+}
+
+async function loadPayments() {
+
+  const response = await fetch(`${API_URL}/payments`);
+
+  const payments = await response.json();
+
+  const container = document.getElementById('payments-container');
+
+  container.innerHTML = '';
+
+  payments.forEach(payment => {
+
+    container.innerHTML += `
+
+      <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+
+        <div>
+
+          <p class="font-bold text-yellow-400">
+            ${payment.amount} $
+          </p>
+
+          <p class="text-slate-400 text-sm">
+            ${payment.payment_method}
+          </p>
+
+        </div>
+
+        <span class="text-sm font-bold">
+          ${payment.status}
+        </span>
+
+      </div>
+    `;
+  });
+}
+
+async function loadDeliveries() {
+
+  const response = await fetch(`${API_URL}/deliveries`);
+
+  const deliveries = await response.json();
+
+  const container = document.getElementById('deliveries-container');
+
+  container.innerHTML = '';
+
+  deliveries.forEach(delivery => {
+
+    container.innerHTML += `
+
+      <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+
+        <div>
+
+          <p class="font-bold text-indigo-400">
+            ${delivery.tracking_number}
+          </p>
+
+          <p class="text-slate-300">
+            ${delivery.delivery_status}
+          </p>
+
+        </div>
+
+        <span class="text-sm text-yellow-400 font-medium">
+          ${delivery.estimated_date}
+        </span>
+
+      </div>
+    `;
+  });
+}
+
+</script>
+
+</body>
+</html>
