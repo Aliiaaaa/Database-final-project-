@@ -398,7 +398,7 @@ Shows how many units of each product were sold.
 [Watch the Demo Video](https://youtu.be/g5Mx_YzWpmk)
 ## PeerFeedback 🎥
 
-[![Watch the video](https://img.youtube.com/vi/VF3w9PLU15A/maxresdefault.jpg)](https://youtube.com/shorts/VF3w9PLU15A)
+[Watch Demo Video](https://youtube.com/shorts/VF3w9PLU15A)
 
 
 # Conclusion
